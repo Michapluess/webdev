@@ -14,7 +14,8 @@ const c = getHypotenuse(3, 4)  // c is now: 5
 // convert to seconds
 function getSeconds(hours, minutes, seconds) {
 	//@TODO
-	return 
+	return (hours*2600 + minutes*60 + seconds)
+	
 }
 const oneLesson = getSeconds(0, 45, 0) // should return 2700
 
