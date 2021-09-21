@@ -7,6 +7,7 @@
 	<style>
 		input, button, .output {padding: 0.4em; border-radius: 5px; font-family: monospace; margin: 0.5em 0; font-size: 1.4em;}
 		input {background-color: #bbe; }
+		.smallinput {width: 110px;px; }
 		.output {background-color: #ada;}
 	</style>
 	<script src="43_functions.js"></script>
@@ -20,6 +21,19 @@
 			<input class="a" placeholder="a" type="number">
 			<input class="b" placeholder="b" type="number">
 			<button>Get Hypotenuse</button>
+			<div class="output">&nbsp;</div>
+		</div>
+	</div>
+
+	<div class=getSeconds>
+		<h2>
+			Get Seconds	
+		</h2>
+		<div>
+			<input class= "hours smallinput" placeholder= "hours" type="number">
+			<input class= "minutes smallinput" placeholder="minutes" type="number">
+			<input class= "seconds smallinput" placeholder="seconds" type="number">
+			<button>Get Seconds</button>
 			<div class="output">&nbsp;</div>
 		</div>
 	</div>
@@ -39,7 +53,21 @@
 			hypotenuseOutput.textContent = c
 		}
 
+		
+		const getSecondsButton = document.querySelector(".getSeconds button")
+		const getSecondsOutput = document.querySelector(".getSeconds .output")
 
+		getSecondsButton.addEventListener("click", calculateSeconds)
+
+
+		function calculateSeconds() {
+			const hours = Number(document.querySelector(".getSeconds input.hours").value)
+			const minutes = Number(document.querySelector(".getSeconds input.minutes").value)
+			const seconds = Number(document.querySelector(".getSeconds input.seconds").value)
+			const result = getSeconds(hours, minutes, seconds)
+			getSecondsOutput.textContent = result
+		}
 	</script>
 </body>
+
 </html>
