@@ -5,12 +5,39 @@
 	<title>SVG Drawer</title>
 	<link rel="stylesheet" href="https://gymburgdorf-ef23.github.io/helpers/basicstyle.css"></link>
 	<style>
-		.wrap {background-color: rgb(50, 70, 100);}
+		.border {background-color: rgb(0, 0, 0)}
+		.wrap {background-color: rgb(255, 255, 255);}
+		.buttonRed {background-color: rgb(255, 0, 0)}
+		.buttonBlue {background-color: rgb(100 , 150, 255)}
+		.buttonGreen {background-color: rgb(0, 255, 0)}
+		.buttonWhite {background-color: rgb(255, 255, 255)}
+		
 	</style>
 </head>
 <body>
 	<h1>SVG Drawer</h1>
-	<div class="wrap"><svg class="drawing" width=800 height=300></svg></div>
+	<div class="wrap">
+		<svg class="drawing" width=810 height=310 style= "border:1px solid black">
+		</svg>
+	</div>
+
+
+
+	<div class= "rangeSlider">
+		<p>Dicke des Strichs: <span id="value"></span></p>
+		<input type="range" min="1" max="20" value="1" id="myRange" class="slider">
+		<p> </p>
+		
+
+	</div>
+
+	<div>
+		<button class="buttonRed">Shrek</button>
+		<button class="buttonBlue">Isch</button>
+		<button class="buttonGreen">Liebi</button>
+		<button class="buttonWhite">Shrek isch Lääääbe</button>
+
+	</div>
 	<script>
 	const drawArea = document.querySelector(".drawing")
 	drawArea.addEventListener("pointermove", collectPoints)
@@ -21,9 +48,45 @@
 	let isDrawing = false
 	let points = []
 
+	let r = 255
+	let g = 255
+	let b = 255
+
+	
+
 	function startDrawing() {
 		isDrawing = true
 	}
+
+	function FarbeAufRot() {
+		console.log("rot")
+		r = 255
+		g = 0
+		b = 0
+
+	}
+
+	function FarbeAufBlau() {
+		console.log("blau")
+		r = 0
+		g = 0
+		b = 255
+	}
+
+	function FarbeAufGrün() {
+		console.log("grün")
+		r = 0
+		g = 255
+		b = 0
+	}
+
+	function FarbeAufWeiss() {
+		console.log("weiss")
+		r = 0
+		g = 0
+		b = 0
+	}
+
 
 	function stopDrawing() {
 		isDrawing = false
@@ -33,20 +96,58 @@
 	function collectPoints(event) {
 		if(isDrawing) {
 			var rect = drawArea.getBoundingClientRect();
+			var x = event.clientX - rect.left
+			var	y = event.clientY - rect.top
 			points.push({
-				x: event.clientX - rect.left,
-				y: event.clientY - rect.top
+				x: x,
+				y: y
 			})
-			console.log(points);
+
+			L = points.length
+			if(L > 1){ 
+
+
+				start = points[L-2]
+				end = points[L-1]
+				//console.log(points);
+
+				drawArea.innerHTML += `<path stroke-width=${slider.value} stroke="rgb(${r}, ${g}, ${b})" d="M ${start.x} ${start.y} L ${end.x} ${end.y}"></path>`
+
+
+	
+			}
 		}
+
 	}
+
+
+	document.querySelector(".buttonRed").addEventListener("click", FarbeAufRot)
+	document.querySelector(".buttonBlue").addEventListener("click", FarbeAufBlau)
+	document.querySelector(".buttonGreen").addEventListener("click", FarbeAufGrün)
+	document.querySelector(".buttonWhite").addEventListener("click", FarbeAufWeiss)
 
     function makeLine() {
         if(startDrawing) {
             
         }
     }
+
+	var slider = document.getElementById("myRange");
+	var output = document.getElementById("value");
+
+	output.innerHTML = slider.value;
 	
+	
+
+	slider.oninput = function() {
+		output.innerHTML = this.value
+	}
+
+
+
 	</script>
-</body>
+
+
+
+
 </html>
