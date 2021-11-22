@@ -11,11 +11,17 @@
 		.buttonBlue {background-color: rgb(100 , 150, 255)}
 		.buttonGreen {background-color: rgb(0, 255, 0)}
 		.buttonWhite {background-color: rgb(255, 255, 255)}
-		
+		.backButton {background-color: rgb(255, 255, 255)}
 	</style>
 </head>
 <body>
 	<h1>SVG Drawer</h1>
+
+	<div>
+		<button class="resetButton"> Reset </button> 
+
+	</div>
+
 	<div class="wrap">
 		<svg class="drawing" width=810 height=310 style= "border:1px solid black">
 		</svg>
@@ -25,7 +31,7 @@
 
 	<div class= "rangeSlider">
 		<p>Dicke des Strichs: <span id="value"></span></p>
-		<input type="range" min="1" max="20" value="1" id="myRange" class="slider">
+		<input type="range" min="1" max="50" value="1" id="myRange" class="slider">
 		<p> </p>
 		
 
@@ -48,11 +54,17 @@
 	let isDrawing = false
 	let points = []
 
-	let r = 255
-	let g = 255
-	let b = 255
+	let r = 0
+	let g = 0
+	let b = 0
 
+
+	function resetBild() {
+		
+	}
+		
 	
+
 
 	function startDrawing() {
 		isDrawing = true
@@ -125,6 +137,7 @@
 	document.querySelector(".buttonBlue").addEventListener("click", FarbeAufBlau)
 	document.querySelector(".buttonGreen").addEventListener("click", FarbeAufGrün)
 	document.querySelector(".buttonWhite").addEventListener("click", FarbeAufWeiss)
+	document.querySelector(".resetButton").addEventListener("click", resetBild)
 
     function makeLine() {
         if(startDrawing) {
