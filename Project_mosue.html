@@ -44,6 +44,12 @@
 		<button class="buttonWhite">Shrek isch Lääääbe</button>
 
 	</div>
+
+	<div class="colorpick">
+
+		<input type="color" id="Colorpick">
+	</div>
+
 	<script>
 	const drawArea = document.querySelector(".drawing")
 	drawArea.addEventListener("pointermove", collectPoints)
@@ -60,7 +66,7 @@
 
 
 	function resetBild() {
-		
+		drawArea.innerHTML= ""
 	}
 		
 	
@@ -124,14 +130,22 @@
 				//console.log(points);
 
 				drawArea.innerHTML += `<path stroke-width=${slider.value} stroke="rgb(${r}, ${g}, ${b})" d="M ${start.x} ${start.y} L ${end.x} ${end.y}"></path>`
+				drawArea.innerHTML += `<circle cx="${end.x}" cy=${end.y} r="${slider.value/2}" fill="rgb(${r}, ${g}, ${b})">`
 
 
 	
 			}
+
+			else if(L== 1){
+				
+				start = points[0]
+
+				drawArea.innerHTML += `<circle cx="${start.x}" cy="${start.y}" r="${slider.value/2}" fill="rgb(${r}, ${g}, ${b})">`
+			}
 		}
 
 	}
-
+	
 
 	document.querySelector(".buttonRed").addEventListener("click", FarbeAufRot)
 	document.querySelector(".buttonBlue").addEventListener("click", FarbeAufBlau)
