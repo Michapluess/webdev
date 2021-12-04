@@ -47,9 +47,10 @@
 
 	<div class="colorpick">
 
-		<input type="color" id="Colorpick">
+		<input type="color" id="Colorpick" value="">
 	</div>
 
+	
 	<script>
 	const drawArea = document.querySelector(".drawing")
 	drawArea.addEventListener("pointermove", collectPoints)
@@ -129,9 +130,10 @@
 				end = points[L-1]
 				//console.log(points);
 
-				drawArea.innerHTML += `<path stroke-width=${slider.value} stroke="rgb(${r}, ${g}, ${b})" d="M ${start.x} ${start.y} L ${end.x} ${end.y}"></path>`
+				//drawArea.innerHTML += `<path stroke-width=${slider.value} stroke="rgb(${r}, ${g}, ${b})" d="M ${start.x} ${start.y} L ${end.x} ${end.y}"></path>`
+				//drawArea.innerHTML += `<circle cx="${end.x}" cy=${end.y} r="${slider.value/2}" fill="rgb(${r}, ${g}, ${b})">`
+				drawArea.innerHTML += `<path stroke-width=${slider.value} stroke="rgb("${pickedcolor.value}")" d="M ${start.x} ${start.y} L ${end.x} ${end.y}"></path>`
 				drawArea.innerHTML += `<circle cx="${end.x}" cy=${end.y} r="${slider.value/2}" fill="rgb(${r}, ${g}, ${b})">`
-
 
 	
 			}
@@ -161,6 +163,8 @@
 
 	var slider = document.getElementById("myRange");
 	var output = document.getElementById("value");
+
+	var pickedcolor = document.getElementById("Colorpick")
 
 	output.innerHTML = slider.value;
 	
